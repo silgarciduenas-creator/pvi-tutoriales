@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PVI 2026 — Tutorial Laura</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=DM+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* PVI TUTORIALES 2026 — CSS compartido (inlinear en cada HTML) */
+:root {
+  --bg:       #fafaf8;
+  --card:     #ffffff;
+  --border:   #e8e4dc;
+  --text:     #1a1a18;
+  --muted:    #6b6b60;
+  --green:    #1a9e5c;
+  --green-bg: #f0faf5;
+  --blue:     #1a6db5;
+  --blue-bg:  #f0f6ff;
+  --yellow:   #c47c00;
+  --yellow-bg:#fff8e6;
+  --red:      #c0392b;
+  --red-bg:   #fff5f5;
+  --pin-bg:   #0f1f14;
+  --pin-text: #4fffaa;
+  --radius:   10px;
+  --shadow:   0 1px 4px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 0 0 60px;
+}
+/* HEADER */
+.hero {
+  background: var(--pin-bg);
+  color: #fff;
+  padding: 32px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(74,255,170,0.08) 0%, transparent 70%);
+}
+.hero-system { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #4fffaa; margin-bottom: 8px; }
+.hero-nombre { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+.hero-rol    { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.hero-pin    {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(74,255,170,0.12); border: 1px solid rgba(74,255,170,0.25);
+  border-radius: 8px; padding: 10px 16px; margin-top: 20px;
+}
+.hero-pin-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+.hero-pin-num   { font-family: 'DM Mono', 'Courier New', monospace; font-size: 26px; font-weight: 700; color: #4fffaa; letter-spacing: 6px; }
+/* LINK CARD */
+.link-card {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.link-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+.link-url   { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--blue); word-break: break-all; background: var(--blue-bg); padding: 8px 10px; border-radius: 6px; margin-bottom: 10px; }
+.btn-link   {
+  display: block; width: 100%; text-align: center;
+  background: var(--green); color: #fff; font-weight: 700; font-size: 14px;
+  padding: 12px; border-radius: 8px; text-decoration: none;
+}
+/* SECTIONS */
+.section {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  padding: 14px 16px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.section-body { padding: 16px; }
+/* STEPS */
+.steps { list-style: none; }
+.step {
+  display: flex; gap: 14px; padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; padding-bottom: 0; }
+.step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: var(--green); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; margin-top: 1px;
+}
+.step-content { flex: 1; }
+.step-title   { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.step-detail  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+/* RULES */
+.rule {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.rule:last-child { border-bottom: none; padding-bottom: 0; }
+.rule-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.rule-text { font-size: 13px; line-height: 1.5; }
+.rule-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 20px; font-size: 12px; font-weight: 700;
+}
+.badge-green  { background: var(--green-bg);  color: var(--green);  }
+.badge-blue   { background: var(--blue-bg);   color: var(--blue);   }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
+.badge-red    { background: var(--red-bg);    color: var(--red);    }
+/* ERRORS */
+.error-item {
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.error-item:last-child { border-bottom: none; padding-bottom: 0; }
+.error-q { font-weight: 700; font-size: 14px; color: var(--red); margin-bottom: 6px; }
+.error-a { font-size: 13px; color: var(--muted); line-height: 1.5; background: var(--bg); padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--green); }
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--green-bg); border: 1px solid #b3e6cc;
+  border-radius: 8px; padding: 12px 14px; margin: 12px 0 0;
+  font-size: 13px; line-height: 1.6;
+}
+.highlight strong { color: var(--green); }
+/* FOOTER */
+.footer { padding: 32px 16px 0; text-align: center; font-size: 12px; color: var(--muted); }
+/* PRINT */
+@media print {
+  .btn-link { display: none; }
+  body { background: #fff; padding-bottom: 0; }
+  .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-system">PVI Control Operativo 2026</div>
+  <div class="hero-nombre">Laura</div>
+  <div class="hero-rol">Tesorería — aprobación y reposición de fondos</div>
+  <div class="hero-pin">
+    <div>
+      <div class="hero-pin-label">Tu PIN de acceso</div>
+      <div class="hero-pin-num">5200</div>
+    </div>
+  </div>
+</div>
+
+<div class="link-card">
+  <div class="link-label">Tu link del sistema</div>
+  <div class="link-url">https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec</div>
+  <a class="btn-link" href="https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec" target="_blank">→ Abrir PVI Control Operativo</a>
+</div>
+
+<div class="section">
+  <div class="section-title">🎯 Tu rol en el sistema</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">✅</div><div class="rule-text"><strong>Aprobación final</strong> Ana revisa los comprobantes, tú haces el doble check y apruebas. Solo puedes ver gastos que Ana ya revisó.</div></div>
+    <div class="rule"><div class="rule-icon">💰</div><div class="rule-text"><strong>Reposición de fondos</strong> Cuando Carlos o Jethro tienen saldo bajo, tú registras la reposición para que el sistema lo refleje.</div></div>
+    <div class="rule"><div class="rule-icon">🚨</div><div class="rule-text"><strong>Alerta automática</strong> Si el saldo de Carlos o Jethro baja de $20,000, te aparece un aviso rojo con el botón de reposición directo.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🚀 Primer acceso</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Abre el link e ingresa PIN: <span style="font-family:monospace;font-size:18px;font-weight:800">5200</span></div><div class="step-detail">Ves primero las alertas de saldo (si hay alguna en rojo), luego los gastos pendientes de tu aprobación.</div></div></li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">✅ Aprobar gastos (tu tarea diaria)</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Revisa cada gasto en la lista azul</div><div class="step-detail">Solo ves los que Ana ya revisó (estado 🔵). Muestra responsable, negocio, descripción y monto.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Abre la foto del comprobante si necesitas</div><div class="step-detail">Click en 📸 Ver foto para verificar el ticket o factura original.</div></div></li>
+      <li class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Si está bien → presiona <strong>"✅ Aprobar"</strong></div><div class="step-detail">El gasto pasa a <span class="badge badge-green">🟢 Aprobado</span> y se descuenta del fondo del operador. Roberto lo ve en su tablero.</div></div></li>
+    </ol>
+    <div class="highlight"><strong>Regla:</strong> nunca apruebes un gasto sin ver que la foto del comprobante corresponde. Si algo te parece mal, avísale a Ana.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">💰 Registrar una reposición de fondos</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Presiona el botón azul <strong>"💰 Registrar reposición"</strong></div><div class="step-detail">Se abre el formulario de reposición. También puedes entrar directo aquí:</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Llena el formulario</div><div class="step-detail">¿A quién? (Carlos o Jethro) · Monto · Método (efectivo o transferencia) · Fecha de entrega física del efectivo.</div></div></li>
+      <li class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Envía y vuelve al tablero</div><div class="step-detail">La reposición se registra automáticamente. En unos minutos aparece en el tablero de Carlos/Jethro y en el de Roberto.</div></div></li>
+    </ol>
+    <div class="link-card" style="margin:12px 0 0;">
+      <div class="link-label">Link directo al formulario de reposición</div>
+      <div class="link-url">https://forms.gle/yDTvYKDYGSfNaKcC9</div>
+      <a class="btn-link" href="https://forms.gle/yDTvYKDYGSfNaKcC9" target="_blank">→ Abrir formulario de reposición</a>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📊 Fondos operadores — sección de referencia</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">🟢</div><div class="rule-text"><strong>Saldo OK</strong> Disponible sobre $10,000 — no requiere acción.</div></div>
+    <div class="rule"><div class="rule-icon">🟡</div><div class="rule-text"><strong>Saldo bajo</strong> Entre $5,000 y $10,000 — considera reponer pronto.</div></div>
+    <div class="rule"><div class="rule-icon">🔴</div><div class="rule-text"><strong>Saldo crítico / Alerta</strong> Menos de $5,000 o menos de $20,000 según la alerta — reponer lo antes posible.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">❌ Errores frecuentes</div>
+  <div class="section-body">
+    <div class="error-item"><div class="error-q">😕 "No veo gastos para aprobar"</div><div class="error-a">Ana aún no ha revisado los gastos pendientes. Solo ves los que ella marcó como 🔵 Revisado. Espera a que Ana procese su cola.</div></div>
+    <div class="error-item"><div class="error-q">😕 "Aprobé un gasto por error"</div><div class="error-a">Avísale inmediatamente a Silvia con la descripción del gasto para revertirlo en el Sheet. No hay botón de deshacer en el tablero.</div></div>
+    <div class="error-item"><div class="error-q">😕 "Registré la reposición pero no aparece en el tablero"</div><div class="error-a">Espera 2-3 minutos y recarga la página (cierra y vuelve a abrir el link). El sistema sincroniza automáticamente.</div></div>
+    <div class="error-item"><div class="error-q">😕 "La alerta de saldo bajo no desaparece"</div><div class="error-a">Desaparece cuando el saldo disponible supere $20,000. Si ya hiciste la reposición y sigue apareciendo, recarga el tablero.</div></div>
+    <div class="error-item"><div class="error-q">😕 "Los fondos de Carlos y Jethro muestran $0"</div><div class="error-a">El fondo de la semana no está asignado todavía. Necesitas ir al Google Sheet (FONDOS) y llenar el monto de esta semana para cada uno.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📋 Asignar fondos cada lunes</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">📅</div><div class="rule-text"><strong>Cada lunes al inicio de semana</strong> hay que abrir el Google Sheet → pestaña FONDOS → llenar el monto de Carlos (col D) y Jethro (col E) para la semana nueva. También actualizar SEMANA_ACTIVA!E5 al período de la semana que empieza.</div></div>
+    <div class="highlight">Si no se hace esto el lunes, los tableros de campo mostrarán $0 en fondo asignado hasta que se llene.</div>
+  </div>
+</div>
+
+<div class="footer">PVI Control Operativo 2026 &nbsp;·&nbsp; Salamanca, Gto.<br>¿Algo no funciona? Escríbele a Silvia.</div>
+</body>
+</html>
