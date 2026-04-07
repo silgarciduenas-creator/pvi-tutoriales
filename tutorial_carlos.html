@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PVI 2026 — Tutorial Carlos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=DM+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* PVI TUTORIALES 2026 — CSS compartido (inlinear en cada HTML) */
+:root {
+  --bg:       #fafaf8;
+  --card:     #ffffff;
+  --border:   #e8e4dc;
+  --text:     #1a1a18;
+  --muted:    #6b6b60;
+  --green:    #1a9e5c;
+  --green-bg: #f0faf5;
+  --blue:     #1a6db5;
+  --blue-bg:  #f0f6ff;
+  --yellow:   #c47c00;
+  --yellow-bg:#fff8e6;
+  --red:      #c0392b;
+  --red-bg:   #fff5f5;
+  --pin-bg:   #0f1f14;
+  --pin-text: #4fffaa;
+  --radius:   10px;
+  --shadow:   0 1px 4px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 0 0 60px;
+}
+/* HEADER */
+.hero {
+  background: var(--pin-bg);
+  color: #fff;
+  padding: 32px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(74,255,170,0.08) 0%, transparent 70%);
+}
+.hero-system { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #4fffaa; margin-bottom: 8px; }
+.hero-nombre { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+.hero-rol    { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.hero-pin    {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(74,255,170,0.12); border: 1px solid rgba(74,255,170,0.25);
+  border-radius: 8px; padding: 10px 16px; margin-top: 20px;
+}
+.hero-pin-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+.hero-pin-num   { font-family: 'DM Mono', 'Courier New', monospace; font-size: 26px; font-weight: 700; color: #4fffaa; letter-spacing: 6px; }
+/* LINK CARD */
+.link-card {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.link-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+.link-url   { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--blue); word-break: break-all; background: var(--blue-bg); padding: 8px 10px; border-radius: 6px; margin-bottom: 10px; }
+.btn-link   {
+  display: block; width: 100%; text-align: center;
+  background: var(--green); color: #fff; font-weight: 700; font-size: 14px;
+  padding: 12px; border-radius: 8px; text-decoration: none;
+}
+/* SECTIONS */
+.section {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  padding: 14px 16px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.section-body { padding: 16px; }
+/* STEPS */
+.steps { list-style: none; }
+.step {
+  display: flex; gap: 14px; padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; padding-bottom: 0; }
+.step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: var(--green); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; margin-top: 1px;
+}
+.step-content { flex: 1; }
+.step-title   { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.step-detail  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+/* RULES */
+.rule {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.rule:last-child { border-bottom: none; padding-bottom: 0; }
+.rule-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.rule-text { font-size: 13px; line-height: 1.5; }
+.rule-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 20px; font-size: 12px; font-weight: 700;
+}
+.badge-green  { background: var(--green-bg);  color: var(--green);  }
+.badge-blue   { background: var(--blue-bg);   color: var(--blue);   }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
+.badge-red    { background: var(--red-bg);    color: var(--red);    }
+/* ERRORS */
+.error-item {
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.error-item:last-child { border-bottom: none; padding-bottom: 0; }
+.error-q { font-weight: 700; font-size: 14px; color: var(--red); margin-bottom: 6px; }
+.error-a { font-size: 13px; color: var(--muted); line-height: 1.5; background: var(--bg); padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--green); }
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--green-bg); border: 1px solid #b3e6cc;
+  border-radius: 8px; padding: 12px 14px; margin: 12px 0 0;
+  font-size: 13px; line-height: 1.6;
+}
+.highlight strong { color: var(--green); }
+/* FOOTER */
+.footer { padding: 32px 16px 0; text-align: center; font-size: 12px; color: var(--muted); }
+/* PRINT */
+@media print {
+  .btn-link { display: none; }
+  body { background: #fff; padding-bottom: 0; }
+  .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-system">PVI Control Operativo 2026</div>
+  <div class="hero-nombre">Carlos</div>
+  <div class="hero-rol">Encargado de campo</div>
+  <div class="hero-pin">
+    <div>
+      <div class="hero-pin-label">Tu PIN de acceso</div>
+      <div class="hero-pin-num">2403</div>
+    </div>
+  </div>
+</div>
+
+<div class="link-card">
+  <div class="link-label">Tu link del sistema</div>
+  <div class="link-url">https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec</div>
+  <a class="btn-link" href="https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec" target="_blank">→ Abrir PVI Control Operativo</a>
+</div>
+
+
+<div class="section">
+  <div class="section-title">🚀 Primer acceso</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Abre el link de arriba</div><div class="step-detail">Desde tu celular o computadora. Guárdalo en favoritos para no perderlo.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Ingresa tu PIN: <span style="font-family:monospace;font-size:18px;font-weight:800">2403</span></div><div class="step-detail">Presiona cada número y luego el botón verde ✓ para entrar.</div></div></li>
+      <li class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Ves tu fondo de la semana</div><div class="step-detail">La tarjeta verde arriba muestra cuánto tienes disponible, cuánto ya gastaste y cuánto te repuso Laura.</div></div></li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📝 Registrar un gasto — hazlo el mismo día</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Presiona <strong>"+ Registrar nuevo gasto"</strong></div><div class="step-detail">El botón verde grande. Te abre el formulario de registro.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">📸 Foto del comprobante — OBLIGATORIA</div><div class="step-detail">Sin foto, el gasto no se guarda. Toma la foto del ticket antes de tirarlo.</div></div></li>
+      <li class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Llena todos los campos</div><div class="step-detail">Fecha de compra, negocio, descripción clara (ej: "Cloro granulado 5kg alberca Quinta"), monto exacto.</div></div></li>
+      <li class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">Envía y vuelve al tablero</div><div class="step-detail">El gasto aparece como <span class="badge badge-yellow">⏳ Pendiente</span> hasta que Ana lo revise.</div></div></li>
+    </ol>
+    <div class="highlight"><strong>Regla de oro:</strong> registra el gasto el mismo día que ocurre. Si lo registras después, el sistema lo marca como tardío y Ana lo nota.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📋 Las 3 pestañas del tablero</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">📅</div><div class="rule-text"><strong>Esta semana</strong> Gastos de la semana activa con gráfica por negocio. Usa ‹ › para ver semanas anteriores.</div></div>
+    <div class="rule"><div class="rule-icon">⚠️</div><div class="rule-text"><strong>Pendientes</strong> Gastos que Ana devolvió con observación. Tienes que corregirlos y volver a registrar.</div></div>
+    <div class="rule"><div class="rule-icon">📚</div><div class="rule-text"><strong>Historial</strong> Todos tus gastos. Puedes filtrar por negocio.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🟠 Cuando Ana pone una observación</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Te aparece un badge rojo en la pestaña ⚠️ Pendientes</div><div class="step-detail">El número indica cuántos gastos tienes que corregir.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Lee el comentario de Ana</div><div class="step-detail">Te dice exactamente qué falta o qué está mal (ej: "foto borrosa, volver a subir").</div></div></li>
+      <li class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Registra el gasto de nuevo con la corrección</div><div class="step-detail">Usa el botón "Corregir este gasto". El original queda como historial, el nuevo entra a revisión.</div></div></li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">❌ Errores frecuentes</div>
+  <div class="section-body">
+    <div class="error-item"><div class="error-q">😕 "No veo mis gastos de esta semana"</div><div class="error-a">Revisa qué semana está seleccionada arriba. Navega con las flechas ‹ › hasta llegar a la semana correcta.</div></div>
+    <div class="error-item"><div class="error-q">😕 "El fondo dice $0"</div><div class="error-a">Laura aún no asignó el fondo para esta semana. Dile que lo registre. Mientras tanto tus gastos sí se guardan correctamente.</div></div>
+    <div class="error-item"><div class="error-q">😕 "No me deja guardar sin foto"</div><div class="error-a">La foto es obligatoria. Si el ticket es muy pequeño, toma la foto de cerca con buena luz. Si no tienes comprobante, toma foto de la transferencia o escribe una nota explicando el motivo.</div></div>
+    <div class="error-item"><div class="error-q">😕 "La página no carga"</div><div class="error-a">Verifica tu conexión a internet. Si persiste, cierra la pestaña y vuelve a abrir el link. Si sigue sin funcionar, avísale a Silvia.</div></div>
+  </div>
+</div>
+
+<div class="footer">PVI Control Operativo 2026 &nbsp;·&nbsp; Salamanca, Gto.<br>¿Algo no funciona? Escríbele a Silvia.</div>
+</body>
+</html>
