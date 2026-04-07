@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PVI 2026 — Tutorial Roberto</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=DM+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* PVI TUTORIALES 2026 — CSS compartido (inlinear en cada HTML) */
+:root {
+  --bg:       #fafaf8;
+  --card:     #ffffff;
+  --border:   #e8e4dc;
+  --text:     #1a1a18;
+  --muted:    #6b6b60;
+  --green:    #1a9e5c;
+  --green-bg: #f0faf5;
+  --blue:     #1a6db5;
+  --blue-bg:  #f0f6ff;
+  --yellow:   #c47c00;
+  --yellow-bg:#fff8e6;
+  --red:      #c0392b;
+  --red-bg:   #fff5f5;
+  --pin-bg:   #0f1f14;
+  --pin-text: #4fffaa;
+  --radius:   10px;
+  --shadow:   0 1px 4px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 0 0 60px;
+}
+/* HEADER */
+.hero {
+  background: var(--pin-bg);
+  color: #fff;
+  padding: 32px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(74,255,170,0.08) 0%, transparent 70%);
+}
+.hero-system { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #4fffaa; margin-bottom: 8px; }
+.hero-nombre { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+.hero-rol    { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.hero-pin    {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(74,255,170,0.12); border: 1px solid rgba(74,255,170,0.25);
+  border-radius: 8px; padding: 10px 16px; margin-top: 20px;
+}
+.hero-pin-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+.hero-pin-num   { font-family: 'DM Mono', 'Courier New', monospace; font-size: 26px; font-weight: 700; color: #4fffaa; letter-spacing: 6px; }
+/* LINK CARD */
+.link-card {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.link-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+.link-url   { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--blue); word-break: break-all; background: var(--blue-bg); padding: 8px 10px; border-radius: 6px; margin-bottom: 10px; }
+.btn-link   {
+  display: block; width: 100%; text-align: center;
+  background: var(--green); color: #fff; font-weight: 700; font-size: 14px;
+  padding: 12px; border-radius: 8px; text-decoration: none;
+}
+/* SECTIONS */
+.section {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  padding: 14px 16px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.section-body { padding: 16px; }
+/* STEPS */
+.steps { list-style: none; }
+.step {
+  display: flex; gap: 14px; padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; padding-bottom: 0; }
+.step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: var(--green); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; margin-top: 1px;
+}
+.step-content { flex: 1; }
+.step-title   { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.step-detail  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+/* RULES */
+.rule {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.rule:last-child { border-bottom: none; padding-bottom: 0; }
+.rule-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.rule-text { font-size: 13px; line-height: 1.5; }
+.rule-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 20px; font-size: 12px; font-weight: 700;
+}
+.badge-green  { background: var(--green-bg);  color: var(--green);  }
+.badge-blue   { background: var(--blue-bg);   color: var(--blue);   }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
+.badge-red    { background: var(--red-bg);    color: var(--red);    }
+/* ERRORS */
+.error-item {
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.error-item:last-child { border-bottom: none; padding-bottom: 0; }
+.error-q { font-weight: 700; font-size: 14px; color: var(--red); margin-bottom: 6px; }
+.error-a { font-size: 13px; color: var(--muted); line-height: 1.5; background: var(--bg); padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--green); }
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--green-bg); border: 1px solid #b3e6cc;
+  border-radius: 8px; padding: 12px 14px; margin: 12px 0 0;
+  font-size: 13px; line-height: 1.6;
+}
+.highlight strong { color: var(--green); }
+/* FOOTER */
+.footer { padding: 32px 16px 0; text-align: center; font-size: 12px; color: var(--muted); }
+/* PRINT */
+@media print {
+  .btn-link { display: none; }
+  body { background: #fff; padding-bottom: 0; }
+  .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-system">PVI Control Operativo 2026</div>
+  <div class="hero-nombre">Roberto</div>
+  <div class="hero-rol">Tablero Ejecutivo — visibilidad sin operar</div>
+  <div class="hero-pin">
+    <div>
+      <div class="hero-pin-label">Tu PIN de acceso</div>
+      <div class="hero-pin-num">1958</div>
+    </div>
+  </div>
+</div>
+
+<div class="link-card">
+  <div class="link-label">Tu link del sistema</div>
+  <div class="link-url">https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec</div>
+  <a class="btn-link" href="https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec" target="_blank">→ Abrir PVI Control Operativo</a>
+</div>
+
+<div class="section">
+  <div class="section-title">🎯 Tu rol en el sistema</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">👁</div><div class="rule-text"><strong>Solo lectura</strong> Tu tablero no tiene botones operativos. Ves todo pero no modificas nada.</div></div>
+    <div class="rule"><div class="rule-icon">📊</div><div class="rule-text"><strong>3 vistas</strong> Esta semana / Por mes / Anual — todo calculado automáticamente desde los gastos del equipo.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📅 Tab "Esta semana" — lo que ves al entrar</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">⚡</div><div class="rule-text"><strong>Alerta de reposición nueva</strong> Aparece en verde cuando Laura hizo una reposición en las últimas 24 horas.</div></div>
+    <div class="rule"><div class="rule-icon">👷</div><div class="rule-text"><strong>Resumen Carlos / Resumen Jethro</strong> Fondo asignado, gastado aprobado, en revisión con Laura, repuesto, y disponible — todo de esta semana.</div></div>
+    <div class="rule"><div class="rule-icon">📈</div><div class="rule-text"><strong>Gráficas</strong> Donut por negocio, barra Carlos vs Jethro, gasto diario lun–dom.</div></div>
+    <div class="rule"><div class="rule-icon">🟠</div><div class="rule-text"><strong>Observaciones activas</strong> Gastos que Ana devolvió con observación — ves el comentario y sabes si ya se corrigieron.</div></div>
+    <div class="rule"><div class="rule-icon">💰</div><div class="rule-text"><strong>Reposiciones de Laura</strong> Historial de reposiciones con fecha, método y monto.</div></div>
+    <div class="rule"><div class="rule-icon">📋</div><div class="rule-text"><strong>Historial completo</strong> Todos los gastos de la semana con su estado actual.</div></div>
+    <div class="highlight">Usa ‹ › para navegar a semanas anteriores y ver el detalle de cualquier semana pasada.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📆 Tab "Por mes"</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">‹ ›</div><div class="rule-text"><strong>Selector de mes</strong> Navega entre meses con las flechas.</div></div>
+    <div class="rule"><div class="rule-icon">📊</div><div class="rule-text"><strong>KPIs mensuales</strong> Aprobado, en revisión, en observación, pendiente Ana, total registrado y número de gastos.</div></div>
+    <div class="rule"><div class="rule-icon">📊</div><div class="rule-text"><strong>Barras por negocio y subcategoría</strong> Distribución visual del gasto del mes.</div></div>
+    <div class="rule"><div class="rule-icon">💰</div><div class="rule-text"><strong>Reposiciones del mes</strong> Aparecen arriba, antes de las gráficas.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📈 Tab "Anual"</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">📉</div><div class="rule-text"><strong>Barras mensuales + tendencia</strong> Gasto registrado vs aprobado mes a mes, con línea de tendencia en amarillo.</div></div>
+    <div class="rule"><div class="rule-icon">🏢</div><div class="rule-text"><strong>Tabla y barras por negocio</strong> Total anual por negocio en tabla y en gráfica horizontal.</div></div>
+    <div class="rule"><div class="rule-icon">🗂</div><div class="rule-text"><strong>Tabla y barras por subcategoría</strong> Desglose de en qué se está gastando el dinero.</div></div>
+    <div class="rule"><div class="rule-icon">🟠</div><div class="rule-text"><strong>Observaciones pendientes</strong> Gastos del año que aún no se han corregido.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🖨 Exportar PDF</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Presiona el botón <strong>"🖨 PDF"</strong> arriba a la derecha</div><div class="step-detail">Abre el diálogo de impresión del navegador.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Selecciona "Guardar como PDF"</div><div class="step-detail">En destino/impresora, elige PDF. El sistema oculta los botones automáticamente para la impresión.</div></div></li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🚦 Semáforos y estados que verás</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">🟢</div><div class="rule-text"><span class="badge badge-green">🟢 Aprobado</span> Gasto revisado por Ana y aprobado por Laura. Dinero comprometido.</div></div>
+    <div class="rule"><div class="rule-icon">🔵</div><div class="rule-text"><span class="badge badge-blue">🔵 En revisión Laura</span> Ana revisó, Laura aún no aprueba.</div></div>
+    <div class="rule"><div class="rule-icon">🟠</div><div class="rule-text"><span class="badge badge-yellow">🟠 Observación</span> Ana devolvió el gasto con un comentario. Campo tiene que corregir.</div></div>
+    <div class="rule"><div class="rule-icon">⏳</div><div class="rule-text"><span class="badge badge-yellow">⏳ Pendiente</span> Recién registrado, esperando revisión de Ana.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">❌ Errores frecuentes</div>
+  <div class="section-body">
+    <div class="error-item"><div class="error-q">😕 "Los bloques de Carlos/Jethro muestran $0 en todo"</div><div class="error-a">Laura no asignó el fondo de esta semana en el Google Sheet (pestaña FONDOS) o SEMANA_ACTIVA!E5 no fue actualizado al inicio de la semana. Pídeselo a Laura o a Silvia.</div></div>
+    <div class="error-item"><div class="error-q">😕 "No veo la semana actual en el selector"</div><div class="error-a">El sistema detecta la semana automáticamente por la fecha de hoy. Si el selector muestra una semana incorrecta, es porque SEMANA_ACTIVA!E5 está desactualizado.</div></div>
+    <div class="error-item"><div class="error-q">😕 "Las gráficas están vacías"</div><div class="error-a">Es una semana nueva sin gastos aún, o hay un problema con Chart.js. Intenta recargar la página. Si persiste en semanas con datos, avísale a Silvia.</div></div>
+    <div class="error-item"><div class="error-q">😕 "El tab de 'Por mes' muestra $0"</div><div class="error-a">Navega al mes correcto con las flechas ‹ ›. Asegúrate de estar en un mes que sí tiene gastos registrados.</div></div>
+    <div class="error-item"><div class="error-q">😕 "Veo gastos en observación que llevan mucho tiempo"</div><div class="error-a">Carlos o Jethro no han corregido esos gastos. Es una acción que ellos deben hacer en su tablero, o Ana puede contactarlos directamente.</div></div>
+  </div>
+</div>
+
+<div class="footer">PVI Control Operativo 2026 &nbsp;·&nbsp; Salamanca, Gto.<br>¿Algo no funciona? Escríbele a Silvia.</div>
+</body>
+</html>
