@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PVI 2026 — Tutorial Ana</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=DM+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* PVI TUTORIALES 2026 — CSS compartido (inlinear en cada HTML) */
+:root {
+  --bg:       #fafaf8;
+  --card:     #ffffff;
+  --border:   #e8e4dc;
+  --text:     #1a1a18;
+  --muted:    #6b6b60;
+  --green:    #1a9e5c;
+  --green-bg: #f0faf5;
+  --blue:     #1a6db5;
+  --blue-bg:  #f0f6ff;
+  --yellow:   #c47c00;
+  --yellow-bg:#fff8e6;
+  --red:      #c0392b;
+  --red-bg:   #fff5f5;
+  --pin-bg:   #0f1f14;
+  --pin-text: #4fffaa;
+  --radius:   10px;
+  --shadow:   0 1px 4px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 0 0 60px;
+}
+/* HEADER */
+.hero {
+  background: var(--pin-bg);
+  color: #fff;
+  padding: 32px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(74,255,170,0.08) 0%, transparent 70%);
+}
+.hero-system { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #4fffaa; margin-bottom: 8px; }
+.hero-nombre { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+.hero-rol    { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.hero-pin    {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(74,255,170,0.12); border: 1px solid rgba(74,255,170,0.25);
+  border-radius: 8px; padding: 10px 16px; margin-top: 20px;
+}
+.hero-pin-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+.hero-pin-num   { font-family: 'DM Mono', 'Courier New', monospace; font-size: 26px; font-weight: 700; color: #4fffaa; letter-spacing: 6px; }
+/* LINK CARD */
+.link-card {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.link-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+.link-url   { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--blue); word-break: break-all; background: var(--blue-bg); padding: 8px 10px; border-radius: 6px; margin-bottom: 10px; }
+.btn-link   {
+  display: block; width: 100%; text-align: center;
+  background: var(--green); color: #fff; font-weight: 700; font-size: 14px;
+  padding: 12px; border-radius: 8px; text-decoration: none;
+}
+/* SECTIONS */
+.section {
+  margin: 20px 16px 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  padding: 14px 16px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.section-body { padding: 16px; }
+/* STEPS */
+.steps { list-style: none; }
+.step {
+  display: flex; gap: 14px; padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; padding-bottom: 0; }
+.step-num {
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: var(--green); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; margin-top: 1px;
+}
+.step-content { flex: 1; }
+.step-title   { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+.step-detail  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+/* RULES */
+.rule {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+}
+.rule:last-child { border-bottom: none; padding-bottom: 0; }
+.rule-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.rule-text { font-size: 13px; line-height: 1.5; }
+.rule-text strong { color: var(--text); display: block; margin-bottom: 2px; }
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 20px; font-size: 12px; font-weight: 700;
+}
+.badge-green  { background: var(--green-bg);  color: var(--green);  }
+.badge-blue   { background: var(--blue-bg);   color: var(--blue);   }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
+.badge-red    { background: var(--red-bg);    color: var(--red);    }
+/* ERRORS */
+.error-item {
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.error-item:last-child { border-bottom: none; padding-bottom: 0; }
+.error-q { font-weight: 700; font-size: 14px; color: var(--red); margin-bottom: 6px; }
+.error-a { font-size: 13px; color: var(--muted); line-height: 1.5; background: var(--bg); padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--green); }
+/* HIGHLIGHT BOX */
+.highlight {
+  background: var(--green-bg); border: 1px solid #b3e6cc;
+  border-radius: 8px; padding: 12px 14px; margin: 12px 0 0;
+  font-size: 13px; line-height: 1.6;
+}
+.highlight strong { color: var(--green); }
+/* FOOTER */
+.footer { padding: 32px 16px 0; text-align: center; font-size: 12px; color: var(--muted); }
+/* PRINT */
+@media print {
+  .btn-link { display: none; }
+  body { background: #fff; padding-bottom: 0; }
+  .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-system">PVI Control Operativo 2026</div>
+  <div class="hero-nombre">Ana</div>
+  <div class="hero-rol">Contadora — revisión de comprobantes</div>
+  <div class="hero-pin">
+    <div>
+      <div class="hero-pin-label">Tu PIN de acceso</div>
+      <div class="hero-pin-num">3200</div>
+    </div>
+  </div>
+</div>
+
+<div class="link-card">
+  <div class="link-label">Tu link del sistema</div>
+  <div class="link-url">https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec</div>
+  <a class="btn-link" href="https://script.google.com/macros/s/AKfycbxcipfRbzpBT99XliMlooDLpDMRm0H3XhzJWuUCHLi0zFfyYklbF6BQNcVjMnwovsGp_w/exec" target="_blank">→ Abrir PVI Control Operativo</a>
+</div>
+
+<div class="section">
+  <div class="section-title">🎯 Tu rol en el sistema</div>
+  <div class="section-body">
+    <div class="rule"><div class="rule-icon">🔵</div><div class="rule-text"><strong>Eres la primera revisora</strong> Carlos y Jethro registran gastos → tú los revisas → Laura los aprueba. Sin tu revisión, Laura no puede aprobar.</div></div>
+    <div class="rule"><div class="rule-icon">⏱</div><div class="rule-text"><strong>SLA: 48 horas</strong> Cada gasto tiene un contador desde que llegó. Los que pasan de 48hrs se marcan en rojo. Roberto lo ve en su tablero.</div></div>
+    <div class="rule"><div class="rule-icon">📸</div><div class="rule-text"><strong>Validar comprobante</strong> Tu tarea principal es confirmar que la foto del ticket/factura corresponda al gasto registrado.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🚀 Primer acceso</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Abre el link e ingresa PIN: <span style="font-family:monospace;font-size:18px;font-weight:800">3200</span></div><div class="step-detail">Ves directamente tu cola de revisión, ordenada del más antiguo al más nuevo.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Resumen arriba</div><div class="step-detail">4 tarjetas: gastos pendientes, cuántos superaron SLA, total en pesos, y cuántos están en observación.</div></div></li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">✅ Revisar y aprobar un gasto</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Lee la descripción y monto</div><div class="step-detail">Negocio, subcategoría, descripción. Si tiene link 📸, abre la foto del comprobante.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Si todo está bien → presiona <strong>"✅ Revisado"</strong></div><div class="step-detail">El gasto pasa a <span class="badge badge-blue">🔵 Revisado</span> y desaparece de tu cola. Laura lo verá para aprobar.</div></div></li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🟠 Poner una observación (algo está mal)</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Presiona <strong>"🟠 Observación"</strong></div><div class="step-detail">Se abre un cuadro de texto debajo del gasto.</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Escribe un comentario claro y específico</div><div class="step-detail">Ejemplos: "Foto borrosa, no se lee el monto" / "Falta especificar a qué vehículo corresponde" / "El monto no coincide con el ticket"</div></div></li>
+      <li class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Presiona <strong>"Enviar observación"</strong></div><div class="step-detail">El gasto pasa a <span class="badge badge-yellow">🟠 Observación</span> y desaparece de tu cola de pendientes.</div></div></li>
+      <li class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">El gasto queda en la sección "En observación" (abajo)</div><div class="step-detail">Lo ves hasta que tú lo cierres manualmente. Carlos/Jethro reciben el comentario y tienen que corregir.</div></div></li>
+    </ol>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🔒 Cerrar una observación (ya la corrigieron)</div>
+  <div class="section-body">
+    <ol class="steps">
+      <li class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Carlos/Jethro envían el gasto corregido</div><div class="step-detail">El gasto nuevo llega a tu cola de pendientes. El original sigue en "En observación".</div></div></li>
+      <li class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Revisa el gasto nuevo y presiona "✅ Revisado"</div><div class="step-detail">Si está bien corregido, márcalo como revisado normal.</div></div></li>
+      <li class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Cierra la observación original</div><div class="step-detail">Ve a la sección "En observación" abajo, encuentra el original y presiona <strong>"✅ Corrección recibida — cerrar"</strong>. Así el ciclo queda cerrado.</div></div></li>
+    </ol>
+    <div class="highlight"><strong>Importante:</strong> las observaciones NO desaparecen solas. Tú decides cuándo cerrarlas. Esto es intencional para que no se pierda el rastro.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">❌ Errores frecuentes</div>
+  <div class="section-body">
+    <div class="error-item"><div class="error-q">😕 "La cola está vacía pero sé que hay gastos"</div><div class="error-a">Los gastos que ya revisaste salen de tu cola (aunque siguen en el sistema). Si hay gastos en observación, los ves en la sección de abajo. Si crees que falta algo, avísale a Silvia.</div></div>
+    <div class="error-item"><div class="error-q">😕 "Puse Revisado por error en un gasto"</div><div class="error-a">Avísale a Silvia con el número de fila o la descripción del gasto para revertirlo en el Sheet directamente.</div></div>
+    <div class="error-item"><div class="error-q">😕 "Hay muchos en rojo (SLA vencido)"</div><div class="error-a">Son gastos que llevan más de 48hrs sin revisar. Roberto los ve en su tablero. No pasa nada urgente — solo procúralos cuanto antes.</div></div>
+    <div class="error-item"><div class="error-q">😕 "No veo la foto del comprobante"</div><div class="error-a">El link de foto 📸 abre el archivo en Google Drive. Si no aparece el link, el gasto se registró sin foto — puedes poner observación pidiendo que la suban.</div></div>
+    <div class="error-item"><div class="error-q">😕 "El botón de Observación no muestra el cuadro de texto"</div><div class="error-a">Desplázate un poco hacia abajo — el cuadro de texto aparece justo debajo del gasto, no en un popup.</div></div>
+  </div>
+</div>
+
+<div class="footer">PVI Control Operativo 2026 &nbsp;·&nbsp; Salamanca, Gto.<br>¿Algo no funciona? Escríbele a Silvia.</div>
+</body>
+</html>
